@@ -1,0 +1,17 @@
+<h1><%= @cat.name.upcase %></h1>
+
+<table>
+  <tr>
+    <th>Atrribute</th>
+    <th>Value</th>
+  </tr>
+  <% Cat.column_names.each do |column| %>
+    <tr>
+      <td><%= column.upcase %></td>
+
+      <td><%= @cat.send(column.to_sym).to_s.upcase %></td>
+    </tr>
+  <% end %>
+  <a href="<%= cats_url %>">Index of Cats</a>
+
+</table>
