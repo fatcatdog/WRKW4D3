@@ -1,7 +1,10 @@
 class Cat < ApplicationRecord
+  COLORS = ["white", "tan", "black", "grey", "orange", "chocolate"]
+
   validates :birth_date, :color, :name, :sex, :description, presence: true
 
-  COLORS = ["white", "tan", "black", "grey", "orange", "chocolate"]
+  has_many :cat_rental_requests, dependent: :destroy
+
 
   def age
     dob = birth_date

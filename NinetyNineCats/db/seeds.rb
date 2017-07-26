@@ -12,12 +12,21 @@ end
 GENDER = ["M", "F"]
 
 Cat.destroy_all
+CatRentalRequest.destroy_all
+
+# Create Cats
 10.times do
-  Cat.create(
+  cat = Cat.create(
     name: Faker::GameOfThrones.character,
     sex: GENDER.sample,
     color: Cat::COLORS.sample,
     birth_date: time_rand,
     description: Faker::RickAndMorty.quote
+  )
+
+  CatRentalRequest.create(
+    cat_id: cat.id,
+    start_date: time_rand(3.days.from_now.time,  2.weeks.from_now.time),
+    end_date: time_rand(3.weeks.from_now.time,  5.weeks.from_now.time)
   )
 end
